@@ -1,0 +1,5 @@
+= Changelog
+
+== 2026-07-17 — Initial jxl-rs decode bindings
+
+* link:changelog-details/2026-07-17%20-%20initial%20jxl-rs%20decode%20bindings.adoc[Details]

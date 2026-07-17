@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>jxl-rs-d</title>
+  <meta name="description" content="D bindings for the jxl-rs JPEG XL decoder — the same Rust decode family used in Chrome and Firefox." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0c1f24;
+      --mist: #e7f2f0;
+      --foam: #f6fbfa;
+      --teal: #0d6e6e;
+      --signal: #1aa6a6;
+      --muted: #4a6366;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      font-family: "Instrument Sans", system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 700px at 12% -10%, #b8e4de 0%, transparent 55%),
+        radial-gradient(900px 600px at 100% 0%, #d7ebe7 0%, transparent 50%),
+        linear-gradient(165deg, var(--foam), var(--mist));
+      min-height: 100vh;
+    }
+    .wrap {
+      min-height: 100vh;
+      display: grid;
+      align-content: center;
+      padding: clamp(1.5rem, 4vw, 3.5rem);
+      max-width: 56rem;
+      margin: 0 auto;
+    }
+    .brand {
+      font-family: Syne, sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.75rem, 9vw, 5.5rem);
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      margin: 0 0 1.25rem;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.05s forwards;
+    }
+    .brand span { color: var(--teal); }
+    h1 {
+      font-family: Syne, sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.35rem, 3.2vw, 2rem);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin: 0 0 0.85rem;
+      max-width: 18ch;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.18s forwards;
+    }
+    .lede {
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      line-height: 1.55;
+      color: var(--muted);
+      max-width: 36rem;
+      margin: 0 0 1.75rem;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s forwards;
+    }
+    .ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1rem;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.42s forwards;
+    }
+    a.btn {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.7rem 1.15rem;
+      border-radius: 0.35rem;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+    a.btn:hover { transform: translateY(-2px); }
+    a.primary {
+      background: var(--ink);
+      color: var(--foam);
+    }
+    a.primary:hover { background: var(--teal); }
+    a.ghost {
+      color: var(--ink);
+      border: 1.5px solid color-mix(in srgb, var(--ink) 28%, transparent);
+    }
+    a.ghost:hover { border-color: var(--signal); color: var(--teal); }
+    .signal {
+      position: fixed;
+      inset: auto 8% 12% auto;
+      width: min(28vw, 220px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #7fd4cb, transparent 68%);
+      filter: blur(2px);
+      opacity: 0.55;
+      pointer-events: none;
+      animation: pulse 5.5s ease-in-out infinite;
+    }
+    @keyframes rise {
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.45; }
+      50% { transform: scale(1.08); opacity: 0.7; }
+    }
+    @media (max-width: 640px) {
+      .signal { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="signal" aria-hidden="true"></div>
+  <main class="wrap">
+    <p class="brand">jxl-rs<span>-d</span></p>
+    <h1>Browser-class JPEG XL decode for D</h1>
+    <p class="lede">
+      D bindings around jxl-rs — the memory-safe Rust decoder used by Chrome and Firefox.
+      Encode lives elsewhere; this package is decode-only and ready for dub.
+    </p>
+    <div class="ctas">
+      <a class="btn primary" href="https://github.com/dlang-supplemental/jxl-rs-d">GitHub</a>
+      <a class="btn ghost" href="https://github.com/dlang-supplemental/jxl-d">Companion: jxl-d</a>
+    </div>
+  </main>
+</body>
+</html>

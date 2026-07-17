@@ -1,0 +1,33 @@
+# Allow-list: ignore everything, then un-ignore tracked paths.
+*
+!*/
+
+!.gitignore
+!LICENSE
+!README.adoc
+!CHANGELOG.adoc
+!MEMORIES.md
+!dub.sdl
+
+!source/
+!source/**
+!docs/
+!docs/**
+!jxl_rs_bridge/
+!jxl_rs_bridge/**
+!changelog-details/
+!changelog-details/**
+
+# Build / VCS noise even under allowed trees
+jxl_rs_bridge/target/
+.dub/
+dub.selections.json
+*.exe
+*.dll
+*.lib
+*.obj
+*.pdb
+*.exp
+*.o
+*.a
+*.log

@@ -1,0 +1,21 @@
+name "jxl-rs-d"
+description "D bindings for the jxl-rs JPEG XL decoder (Rust)"
+authors "amdphreak"
+copyright "Copyright © 2026, amdphreak"
+license "BSD-3-Clause"
+
+targetType "library"
+targetName "jxl_rs_d"
+
+// Build the Rust bridge before compiling D code (same pattern as vello-d).
+preBuildCommands "powershell -NoProfile -Command \"cd jxl_rs_bridge; $$env:CARGO_TARGET_DIR = (Join-Path (Get-Location) 'target'); cargo build --release\""
+
+lflags "/LIBPATH:${PACKAGE_DIR}/jxl_rs_bridge/target/release" platform="windows"
+libs "jxl_rs_bridge" platform="windows"
+libs "advapi32" "userenv" "ws2_32" "bcrypt" "ntdll" "user32" platform="windows"
+
+lflags "-L${PACKAGE_DIR}/jxl_rs_bridge/target/release" platform="posix"
+libs "jxl_rs_bridge" "pthread" "dl" "m" platform="posix"
+
+importPaths "source"
+sourcePaths "source"

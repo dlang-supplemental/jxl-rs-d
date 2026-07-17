@@ -1,0 +1,16 @@
+[package]
+name = "jxl_rs_bridge"
+version = "0.1.0"
+edition = "2024"
+license = "BSD-3-Clause"
+description = "C ABI bridge exposing jxl-rs decode to D (and other FFI callers)"
+
+[lib]
+crate-type = ["cdylib", "staticlib"]
+
+[dependencies]
+jxl = "0.4.3"
+
+[profile.release]
+lto = true
+codegen-units = 1

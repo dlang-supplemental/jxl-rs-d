@@ -1,0 +1,14 @@
+= Initial jxl-rs decode bindings
+
+Date:: 2026-07-17
+
+== Summary
+
+First cut of `jxl-rs-d`: a Rust C ABI bridge over the official `jxl` crate
+(jxl-rs) plus D bindings and a one-shot RGBA8 decode helper, following the
+same dub + `preBuildCommands` pattern as `vello-d`.
+
+== Notes
+
+* Decode only — browsers' path; encode lives in `jxl-d` via libjxl.
+* One-shot API targets thumbnails / simple viewers; streaming FFI can grow later.
