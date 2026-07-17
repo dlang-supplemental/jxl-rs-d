@@ -9,6 +9,9 @@
 !MEMORIES.md
 !dub.sdl
 
+!.github/
+!.github/**
+
 !source/
 !source/**
 !docs/

@@ -1,0 +1,126 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: ${{ matrix.artifact }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            artifact: linux-x86_64
+          - os: ubuntu-24.04-arm
+            artifact: linux-aarch64
+          - os: windows-latest
+            artifact: windows-x86_64
+          - os: windows-11-arm
+            artifact: windows-aarch64
+          - os: macos-15
+            artifact: macos-aarch64
+          - os: macos-13
+            artifact: macos-x86_64
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Set up D (LDC)
+        uses: dlang-community/setup-dlang@v1
+        with:
+          compiler: ldc-latest
+
+      - name: Build + test
+        shell: bash
+        run: |
+          set -euo pipefail
+          dub build --compiler=ldc2
+          dub test --compiler=ldc2
+
+      - name: Package bridge artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          REL=jxl_rs_bridge/target/release
+          if [[ "${{ runner.os }}" == "Windows" ]]; then
+            cp "$REL"/jxl_rs_bridge.lib dist/ || true
+            cp "$REL"/jxl_rs_bridge.dll dist/ || true
+            cp "$REL"/jxl_rs_bridge.dll.lib dist/ || true
+          else
+            cp "$REL"/libjxl_rs_bridge.a dist/ || true
+            cp "$REL"/libjxl_rs_bridge.so dist/ 2>/dev/null || true
+            cp "$REL"/libjxl_rs_bridge.dylib dist/ 2>/dev/null || true
+          fi
+          cp LICENSE dist/
+          cp README.adoc dist/
+          (
+            cd dist
+            if command -v zip >/dev/null 2>&1; then
+              zip -r "../jxl-rs-d-${{ matrix.artifact }}.zip" .
+            else
+              powershell -NoProfile -Command "Compress-Archive -Path * -DestinationPath '../jxl-rs-d-${{ matrix.artifact }}.zip'"
+            fi
+          )
+          ls -la dist
+          ls -la jxl-rs-d-*.zip
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jxl-rs-d-${{ matrix.artifact }}
+          path: jxl-rs-d-${{ matrix.artifact }}.zip
+          if-no-files-found: error
+
+  release:
+    name: GitHub Release
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release-assets
+
+      - name: Flatten zips
+        run: |
+          set -euo pipefail
+          mkdir -p upload
+          find release-assets -name '*.zip' -exec cp {} upload/ \;
+          ls -la upload
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: upload/*
+          generate_release_notes: true
+          body: |
+            ## jxl-rs-d ${{ github.ref_name }}
+
+            D bindings for the [jxl-rs](https://github.com/libjxl/jxl-rs) JPEG XL **decoder**.
+
+            ### Artifacts
+            Prebuilt Rust bridge libraries for:
+            - `linux-x86_64` / `linux-aarch64`
+            - `windows-x86_64` / `windows-aarch64`
+            - `macos-x86_64` / `macos-aarch64`
+
+            ### Usage
+            ```bash
+            dub add jxl-rs-d
+            ```
+            Or depend on this git repo. Requires Rust + LDC for source builds (`preBuildCommands` builds `jxl_rs_bridge`).

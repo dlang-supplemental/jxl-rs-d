@@ -8,7 +8,8 @@ targetType "library"
 targetName "jxl_rs_d"
 
 // Build the Rust bridge before compiling D code (same pattern as vello-d).
-preBuildCommands "powershell -NoProfile -Command \"cd jxl_rs_bridge; $$env:CARGO_TARGET_DIR = (Join-Path (Get-Location) 'target'); cargo build --release\""
+preBuildCommands `powershell -NoProfile -Command "cd jxl_rs_bridge; $$env:CARGO_TARGET_DIR = (Join-Path (Get-Location) 'target'); cargo build --release"` platform="windows"
+preBuildCommands "cd jxl_rs_bridge && CARGO_TARGET_DIR=\"${PACKAGE_DIR}/jxl_rs_bridge/target\" cargo build --release" platform="posix"
 
 lflags "/LIBPATH:${PACKAGE_DIR}/jxl_rs_bridge/target/release" platform="windows"
 libs "jxl_rs_bridge" platform="windows"
@@ -16,6 +17,7 @@ libs "advapi32" "userenv" "ws2_32" "bcrypt" "ntdll" "user32" platform="windows"
 
 lflags "-L${PACKAGE_DIR}/jxl_rs_bridge/target/release" platform="posix"
 libs "jxl_rs_bridge" "pthread" "dl" "m" platform="posix"
+lflags "-framework" "Security" "-framework" "CoreFoundation" platform="osx"
 
 importPaths "source"
 sourcePaths "source"

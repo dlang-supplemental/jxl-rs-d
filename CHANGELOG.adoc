@@ -1,5 +1,10 @@
 = Changelog
 
+== 2026-07-17 — v0.1.0
+
+* Multi-arch CI (Windows/macOS/Linux × x86_64/arm64) and GitHub Release artifacts
+* Initial jxl-rs decode bindings (Rust bridge + D API + Pages site)
+
 == 2026-07-17 — Initial jxl-rs decode bindings
 
 * link:changelog-details/2026-07-17%20-%20initial%20jxl-rs%20decode%20bindings.adoc[Details]
