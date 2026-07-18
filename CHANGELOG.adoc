@@ -1,5 +1,9 @@
 = Changelog
 
+== 2026-07-17 — v0.1.1
+
+* Add `README.md` for DUB registry (alongside AsciiDoc README)
+
 == 2026-07-17 — v0.1.0
 
 * Multi-arch CI (Windows/macOS/Linux × x86_64/arm64) and GitHub Release artifacts
