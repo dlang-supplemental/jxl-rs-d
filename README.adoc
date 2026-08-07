@@ -3,21 +3,12 @@ ifndef::env-github[:icons: font]
 :toclevels: 2
 :sectanchors:
 
-ifndef::env-github[]
+[[readme-top]]
 image:https://img.shields.io/github/contributors/dlang-supplemental/jxl-rs-d.svg?style=for-the-badge[Contributors,link=https://github.com/dlang-supplemental/jxl-rs-d/graphs/contributors]
 image:https://img.shields.io/github/forks/dlang-supplemental/jxl-rs-d.svg?style=for-the-badge[Forks,link=https://github.com/dlang-supplemental/jxl-rs-d/network/members]
 image:https://img.shields.io/github/stars/dlang-supplemental/jxl-rs-d.svg?style=for-the-badge[Stars,link=https://github.com/dlang-supplemental/jxl-rs-d/stargazers]
 image:https://img.shields.io/github/issues/dlang-supplemental/jxl-rs-d.svg?style=for-the-badge[Issues,link=https://github.com/dlang-supplemental/jxl-rs-d/issues]
 image:https://img.shields.io/github/license/dlang-supplemental/jxl-rs-d.svg?style=for-the-badge[License,link=https://github.com/dlang-supplemental/jxl-rs-d/blob/main/LICENSE]
-endif::[]
-
-ifdef::env-github[]
-image:https://img.shields.io/github/contributors/dlang-supplemental/jxl-rs-d.svg?style=for-the-badge[Contributors]
-image:https://img.shields.io/github/forks/dlang-supplemental/jxl-rs-d.svg?style=for-the-badge[Forks]
-image:https://img.shields.io/github/stars/dlang-supplemental/jxl-rs-d.svg?style=for-the-badge[Stars]
-image:https://img.shields.io/github/issues/dlang-supplemental/jxl-rs-d.svg?style=for-the-badge[Issues]
-image:https://img.shields.io/github/license/dlang-supplemental/jxl-rs-d.svg?style=for-the-badge[License]
-endif::[]
 
 = jxl-rs-d
 
@@ -31,6 +22,8 @@ Install: `dub add jxl-rs-d`
 Encode is intentionally out of scope. For encode + a unified D API, see https://github.com/dlang-supplemental/jxl-d[`jxl-d`] (libjxl encode + this package for decode).
 
 == About The Project
+
+link:#readme-top[back to top]
 
 == Requirements
 
@@ -65,6 +58,8 @@ The `preBuildCommands` in `dub.sdl` compile `jxl_rs_bridge` (Rust `cdylib` / `st
 * `jxl_rs_bridge/` — C ABI wrapper around the `jxl` crate
 * `source/jxl_rs/` — D `extern(C)` bindings + high-level helpers
 
+link:#readme-top[back to top]
+
 == Changelog
 
 See link:CHANGELOG.adoc[CHANGELOG].
@@ -73,9 +68,13 @@ See link:CHANGELOG.adoc[CHANGELOG].
 
 BSD-3-Clause — see link:LICENSE[LICENSE] (matches jxl-rs).
 
+link:#readme-top[back to top]
+
 == Contact
 
 DLang Supplemental — dlang@devcentr.org
 
 * Project: https://github.com/dlang-supplemental/jxl-rs-d
 * Site: https://dlang-supplemental.github.io
+
+link:#readme-top[back to top]
