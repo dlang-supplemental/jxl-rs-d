@@ -3,7 +3,26 @@ ifndef::env-github[:icons: font]
 :toclevels: 2
 :sectanchors:
 
-[[readme-top]]
+ifdef::env-github[]
+++++
+<a id="readme-top"></a>
+<div align="center">
+<a href="https://github.com/dlang-supplemental/jxl-rs-d/graphs/contributors"><img src="https://img.shields.io/github/contributors/dlang-supplemental/jxl-rs-d.svg?style=for-the-badge" alt="Contributors"></a>
+<a href="https://github.com/dlang-supplemental/jxl-rs-d/network/members"><img src="https://img.shields.io/github/forks/dlang-supplemental/jxl-rs-d.svg?style=for-the-badge" alt="Forks"></a>
+<a href="https://github.com/dlang-supplemental/jxl-rs-d/stargazers"><img src="https://img.shields.io/github/stars/dlang-supplemental/jxl-rs-d.svg?style=for-the-badge" alt="Stars"></a>
+<a href="https://github.com/dlang-supplemental/jxl-rs-d/issues"><img src="https://img.shields.io/github/issues/dlang-supplemental/jxl-rs-d.svg?style=for-the-badge" alt="Issues"></a>
+<a href="https://github.com/dlang-supplemental/jxl-rs-d/blob/main/LICENSE"><img src="https://img.shields.io/github/license/dlang-supplemental/jxl-rs-d.svg?style=for-the-badge" alt="License"></a>
+<br />
+<h3 align="center">jxl-rs-d</h3>
+<p align="center">
+D bindings for <a href="https://github.com/libjxl/jxl-rs">jxl-rs</a>, the memory-safe Rust JPEG XL <em>decoder</em> used by Chromium and Firefox.<br />
+<a href="https://dlang-supplemental.github.io/jxl-rs-d/"><strong>Explore the docs</strong></a><br /><br /><a href="https://github.com/dlang-supplemental/jxl-rs-d/issues">Report Bug</a>
+</p>
+</div>
+++++
+endif::[]
+
+ifndef::env-github[]
 image:https://img.shields.io/github/contributors/dlang-supplemental/jxl-rs-d.svg?style=for-the-badge[Contributors,link=https://github.com/dlang-supplemental/jxl-rs-d/graphs/contributors]
 image:https://img.shields.io/github/forks/dlang-supplemental/jxl-rs-d.svg?style=for-the-badge[Forks,link=https://github.com/dlang-supplemental/jxl-rs-d/network/members]
 image:https://img.shields.io/github/stars/dlang-supplemental/jxl-rs-d.svg?style=for-the-badge[Stars,link=https://github.com/dlang-supplemental/jxl-rs-d/stargazers]
@@ -16,6 +35,7 @@ D bindings for link:https://github.com/libjxl/jxl-rs[jxl-rs], the memory-safe Ru
 
 link:https://dlang-supplemental.github.io/jxl-rs-d/[Explore the docs] ·
 link:https://github.com/dlang-supplemental/jxl-rs-d/issues[Report Bug]
+endif::[]
 
 Install: `dub add jxl-rs-d`
 
@@ -23,7 +43,9 @@ Encode is intentionally out of scope. For encode + a unified D API, see https://
 
 == About The Project
 
-link:#readme-top[back to top]
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
 
 == Requirements
 
@@ -58,7 +80,9 @@ The `preBuildCommands` in `dub.sdl` compile `jxl_rs_bridge` (Rust `cdylib` / `st
 * `jxl_rs_bridge/` — C ABI wrapper around the `jxl` crate
 * `source/jxl_rs/` — D `extern(C)` bindings + high-level helpers
 
-link:#readme-top[back to top]
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
 
 == Changelog
 
@@ -68,7 +92,9 @@ See link:CHANGELOG.adoc[CHANGELOG].
 
 BSD-3-Clause — see link:LICENSE[LICENSE] (matches jxl-rs).
 
-link:#readme-top[back to top]
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
 
 == Contact
 
@@ -77,4 +103,6 @@ DLang Supplemental — dlang@devcentr.org
 * Project: https://github.com/dlang-supplemental/jxl-rs-d
 * Site: https://dlang-supplemental.github.io
 
-link:#readme-top[back to top]
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
