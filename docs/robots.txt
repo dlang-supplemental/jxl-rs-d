@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dlang-supplemental.github.io/jxl-rs-d/sitemap.xml
